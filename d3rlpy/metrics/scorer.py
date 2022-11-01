@@ -586,7 +586,7 @@ def true_q_evaluate(algo: AlgoProtocol, episodes: List[Episode]) -> float:
                 [batch.next_observations[0]], next_actions
             )
             mask = (1.0 - np.asarray(batch.terminals)).reshape(-1)
-            rewards = np.asarray(batch.next_rewards).reshape(-1)
+            rewards = np.asarray(batch.rewards).reshape(-1)
             if algo.reward_scaler:
                 rewards = algo.reward_scaler.transform_numpy(rewards)
             y = rewards + algo.gamma * cast(np.ndarray, next_values) * mask
